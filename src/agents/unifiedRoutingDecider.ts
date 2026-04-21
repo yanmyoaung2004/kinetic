@@ -59,24 +59,8 @@ export async function processUnifiedRoutingDecisionAPICallGroq(
           },
         },
       },
-      // tools,
-      // tool_choice: "auto",
     });
     return JSON.parse(response.choices[0].message.content || "{}");
-    // console.log(response.choices[0].message);
-
-    // const maxIterations = 10;
-    // let iteration = 0;
-    // while (
-    //   response.choices[0].message.tool_calls &&
-    //   iteration < maxIterations
-    // ) {
-    //   iteration++;
-    //   messages.push(response.choices[0].message);
-
-    //   console.log(
-    //     `Iteration ${iteration}: Model called ${response.choices[0].message.tool_calls.length} tool(s)`,
-    //   );
 
     //   // Handle all tool calls from this turn
     //   for (const toolCall of response.choices[0].message.tool_calls) {
