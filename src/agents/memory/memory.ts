@@ -32,40 +32,6 @@ export class KineticMemory {
   async processUnifiedRoutingDecision(
     userInput: string,
   ): Promise<UnifiedRoutingDecision> {
-    const input = userInput.trim().toLowerCase();
-
-    // 1. Hard-coded Fast Track (Regex) - Zero Latency
-    const fastTrack = [
-      "goal",
-      "remember",
-      "history",
-      "access code",
-      "last time",
-      "project",
-    ];
-    // if (fastTrack.some((word) => input.includes(word)))
-    //   return {
-    //     needMemory: true,
-    //     targetAgent: ["NONE"],
-    //     executionMode: "SEQUENTIAL",
-    //     directAnswer: null,
-    //   };
-
-    // // 2. Length & Filler Gate
-    // if (
-    //   input.length < 12 ||
-    //   ["hello", "hi", "thanks", "cool"].includes(input)
-    // ) {
-    //   console.log("shouldn't be called");
-    //   return {
-    //     needMemory: false,
-    //     targetAgent: ["NONE"],
-    //     executionMode: "SEQUENTIAL",
-    //     directAnswer: null,
-    //   };
-    // }
-
-    // 3. Intelligent Intent Check
     try {
       const unifiedDecision = await processUnifiedRoutingDecisionAPICallGroq(
         userInput,
