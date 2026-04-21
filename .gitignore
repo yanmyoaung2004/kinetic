@@ -1,0 +1,4 @@
+node_modules
+src/agents.json
+.env
+test
