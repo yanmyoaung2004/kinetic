@@ -3,66 +3,12 @@ import ollama from "ollama";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import { readConfigMarkdown } from "./utils/utils";
-import {
-  calculate,
-  execute,
-  killProcess,
-  startBackground,
-  tools,
-} from "./tools/tools";
 
 const UnifiedRoutingSchema = z.object({
   needMemory: z.boolean(),
   targetAgents: z.array(z.enum(["SecurityAnalyst", "NONE"])),
   executionMode: z.enum(["PARALLEL", "SEQUENTIAL"]),
 });
-
-const availableFunctions = {
-  calculate,
-  execute,
-  start_background: startBackground,
-  kill_process: killProcess,
-};
-
-const toolCalls = {
-  type: "array",
-  items: {
-    type: "object",
-    properties: {
-      id: { type: "string" },
-      type: { type: "string" },
-      function: {
-        type: "object",
-        properties: {
-          name: { type: "string" },
-          arguments: { type: "string" },
-        },
-      },
-    },
-  },
-};
-
-// const response_schema = {
-//   type: "json_schema",
-//   json_schema: {
-//     name: "decision",
-//     schema: {
-//       type: "object",
-//       properties: {
-//         needMemory: { type: "boolean" },
-//         targetAgent: {
-//           type: "array",
-//           items: { type: "string" },
-//         },
-//         executionMode: { type: "string" },
-//         directAnswer: { type: "string" },
-//         tool_calls: toolCalls,
-//       },
-//       required: ["needMemory", "targetAgents", "executionMode"],
-//       additionalProperties: false,
-//     },
-//   },
-// };
 
 export async function processUnifiedRoutingDecisionAPICallGroq(
   query: string,
